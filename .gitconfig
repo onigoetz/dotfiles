@@ -1,3 +1,11 @@
+[user]
+	name = Stéphane Goetz
+	email = onigoetz@onigoetz.ch
+[core]
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+	editor = mate -w
 [alias]
 	c = commit -am
 	up = pull
@@ -7,14 +15,12 @@
 	df = diff --color --color-words --abbrev
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	permission-reset = "!git diff -p --no-color | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply"
-[color]
-	ui = always
 [apply]
 	whitespace = fix
-[core]
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+[merge]
+	log = true	
+[color]
+	ui = always
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -28,8 +34,7 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-[merge]
-	log = true
+
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
