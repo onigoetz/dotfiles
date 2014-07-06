@@ -9,7 +9,7 @@ unset file
 #. ~/code/z/z.sh
 
 # homebrew path (and php for pear scripts) at the beginning
-export PATH="$(brew --prefix)/bin:$(brew --prefix php54)/bin:$PATH"
+export PATH="$(brew --prefix)/bin:$(brew --prefix php55)/bin:$PATH"
 
 # init rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"

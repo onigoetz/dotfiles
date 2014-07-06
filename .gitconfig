@@ -6,6 +6,7 @@
 	attributesfile = ~/.gitattributes
 	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 	editor = mate -w
+	autocrlf = false
 [alias]
 	c = commit -am
 	up = pull
