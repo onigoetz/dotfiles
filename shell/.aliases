@@ -10,7 +10,10 @@ alias nginx_start="sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.ngin
 alias nginx_stop="sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
 
 alias php_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
-alias php_start="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
+alias php_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
+
+alias mysql_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
+alias mysql_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
 
 # programs
 alias php-cs-fix="~/Sites/Library/PHP-CS-Fixer/php-cs-fixer"
