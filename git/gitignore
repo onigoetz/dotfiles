@@ -8,6 +8,7 @@ Desktop.ini
 # Thumbnail cache files
 ._*
 Thumbs.db
+*~
 
 # Files that might appear on external disks
 .Spotlight-V100
@@ -16,3 +17,10 @@ Thumbs.db
 # Project folder
 nbproject
 .idea
+*.iml
+
+# Java projects
+overlays
+
+# PHP Projects
+vendor

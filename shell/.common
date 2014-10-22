@@ -1,0 +1,86 @@
+
+## Exports
+################################################################################
+
+# dotfiles
+export DOTFILES="$HOME/dotfiles"
+
+# Make mate the default editor
+export EDITOR="/usr/local/bin/mate -w"
+
+# homebrew path (and php for pear scripts) at the beginning
+export PATH="$(brew --prefix)/bin:$(brew --prefix php55)/bin:$PATH"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+# Homebrew Cask
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+
+## Load
+################################################################################
+
+# Load ~/.extra
+# ~/.extra can be used for settings you don’t want to commit
+[ -r ~/.extra ] && source ~/.extra
+
+# Load rbenv
+eval "$(rbenv init -)"
+
+# Dircolors
+if which gdircolors >/dev/null; then
+  eval `gdircolors $DOTFILES/shell/dircolors.256dark`
+else
+  eval `dircolors $DOTFILES/shell/dircolors.256dark`
+fi
+
+
+## Aliases
+################################################################################
+
+# start_stop
+alias nginx_start="sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
+alias nginx_stop="sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
+
+alias php_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
+alias php_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
+
+alias mysql_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
+alias mysql_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
+
+alias postgres_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+alias postgres_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+
+# programs
+alias php-cs-fix="~/Sites/Library/PHP-CS-Fixer/php-cs-fixer"
+
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
+
+# Quick way to rebuild the Launch Services database and get rid of duplicates in the Open With submenu.
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en1"
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+
+# Enhanced WHOIS lookups
+alias whois="whois -h whois-servers.net"
+
+# Flush Directory Service cache
+alias flush="dscacheutil -flushcache"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+## Functions
+################################################################################
+
+# All the dig info
+function digga() {
+  dig +nocmd "$1" any +multiline +noall +answer
+}

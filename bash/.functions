@@ -75,19 +75,12 @@ function gitexport(){
 	git archive master | tar -x -C "$1"
 }
 
-
-
 # get gzipped size
 function gz() {
 	echo "orig size    (bytes): "
 	cat "$1" | wc -c
 	echo "gzipped size (bytes): "
 	gzip -c "$1" | wc -c
-}
-
-# All the dig info
-function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
 }
 
 # Escape UTF-8 characters into their 3-byte format

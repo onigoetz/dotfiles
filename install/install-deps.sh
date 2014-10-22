@@ -1,58 +1,65 @@
-# up to you (me) if you want to run this as a file or copy paste at your leisure
 
+# TODO check XCode installation
 
-# https://github.com/jamiew/git-friendly
-# the `push` command which copies the github compare URL to my clipboard is heaven
-sudo bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
+# TODO - command line tools for OS X : https://developer.apple.com/downloads/index.action
 
-# https://rvm.io
-# rvm for the rubiess
-#curl -L https://get.rvm.io | bash -s stable --ruby
-# TODO: auto install rbenv
+echo "Installing Homebrew..."
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+echo "Installing Common softwares ..."
+brew install curl dos2unix graphviz mercurial node wget git
 
-# https://github.com/isaacs/nave
-# needs npm, obviously.
-# TODO: I think i'd rather curl down the nave.sh, symlink it into /bin and use that for initial node install.
-npm install -g nave
+echo "Installing Homebrew Cask..."
+brew install caskroom/cask/brew-cask
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+echo "Installing common applications"
+brew cask install google-chrome firefox mou filezilla imageoptim mysqlworkbench sourcetree cakebrew textmate atom
 
-# homebrew!
-# you need the code CLI tools YOU FOOL.
-ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
+echo "Installing some more apps"
+brew cask install apache-directory-studio fantastical cord
 
+echo "Installing ZSH"
+brew install zsh coreutils
+sudo /bin/sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+chsh -s /usr/local/bin/zsh
 
+echo "Installing some fonts"
+/bin/sh ./fonts/install.sh
 
-# https://github.com/rupa/z
-# z, oh how i love you
-#mkdir -p ~/code/z
-#curl https://raw.github.com/rupa/z/master/z.sh > ~/code/z/z.sh
-#chmod +x ~/code/z/z.sh
-# also consider moving over your current .z file if possible. it's painful to rebuild :)
+## TODO :: install Solarized Dark Terminal.app theme and set as default
 
+echo "Installing PHP"
+brew tap josegonzalez/php
+brew tap homebrew/dupes
 
-# add this to the bash_profile file if it aint there.
-#   . ~/code/z/z.sh
+brew install php55 --without-apache --with-debug --with-fpm --with-pgsql
+ln -sfv /usr/local/opt/php55/*.plist ~/Library/LaunchAgents
+brew install php55-mcrypt php55-xdebug php55-xhprof
 
+echo "Installing HHVM"
+brew cask install xquartz
+brew tap mcuadros/homebrew-hhvm
+brew install hhvm --with-mariadb
 
-cd ~/code
-git clone git://github.com/dronir/SpotifyControl.git
+echo "Installing Mysql"
+brew install mariadb
+ln -sfv /usr/local/opt/mariadb/*.plist ~/Library/LaunchAgents
 
+echo "Installing Nginx"
+#brew tap homebrew/nginx
+#brew install nginx-full
+brew install nginx
+ln -sfv /usr/local/opt/nginx/*.plist ~/Library/LaunchAgents
 
+echo "Installing Drupal Stuff"
+brew install postgresql
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+brew cask install pgadmin3
 
-# my magic photobooth symlink -> dropbox. I love it.
-# first move Photo Booth folder out of Pictures
-# then start Photo Booth. It'll ask where to put the library.
-# put it in Dropbox/public
-
-# now you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
-# then you grab public URL and send off your video message in a heartbeat.
-
-
-# for the c alias (syntax highlighted cat)
-sudo easy_install Pygments
-
-
-# chrome canary as default
-# on a mac you can set chrome canary as your default inside of Safari preferences :)
-
+echo "Installing Java versions"
+brew install terminal-notifier
+brew install https://raw.githubusercontent.com/entrypass/jenv/homebrew/homebrew/jenv.rb
+eval "$(jenv init -)"
+jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
+jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home

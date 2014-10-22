@@ -1,19 +1,12 @@
+
+# Load ~/.common
+[ -r ~/dotfiles/shell/.common ] && source ~/dotfiles/shell/.common
+
 # Load ~/.bash_prompt, ~/.exports, ~/.aliases and ~/.functions
-for file in ~/dotfiles/shell/.{bash_prompt,exports,aliases,functions}; do
+for file in ~/dotfiles/bash/.{bash_prompt,exports,aliases,functions}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file
-
-# Load ~/.extra
-# ~/.extra can be used for settings you don’t want to commit
-[ -r ~/.extra ] && source ~/.extra
-
-# homebrew path (and php for pear scripts) at the beginning
-export PATH="$(brew --prefix)/bin:$(brew --prefix php55)/bin:$PATH"
-
-# init rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob

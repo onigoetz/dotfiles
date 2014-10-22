@@ -1,6 +1,3 @@
-# Make mate the default editor
-export EDITOR="/usr/local/bin/mate -w"
-
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 

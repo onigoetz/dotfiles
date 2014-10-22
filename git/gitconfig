@@ -19,7 +19,7 @@
 [apply]
 	whitespace = fix
 [merge]
-	log = true	
+	log = true
 [color]
 	ui = always
 [color "branch"]
@@ -49,7 +49,13 @@
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
 
+[url "http://"]
+	insteadOf = git://
+
 # Any GitHub repo with my username should be checked out r/w by default
 # http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
 [url "git@github.com:onigoetz/"]
   insteadOf = "git://github.com/onigoetz/"
+
+#[http]
+#	proxy = http://127.0.0.1:3129
