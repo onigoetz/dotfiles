@@ -1,6 +1,6 @@
 [user]
 	name = Stéphane Goetz
-	email = onigoetz@onigoetz.ch
+	email = stephane.goetz@swissquote.ch
 [core]
 	excludesfile = ~/.gitignore
 	#attributesfile = ~/.gitattributes
@@ -21,7 +21,7 @@
 [merge]
 	log = true
 [color]
-	ui = always
+	ui = true
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -57,5 +57,5 @@
 [url "git@github.com:onigoetz/"]
   insteadOf = "git://github.com/onigoetz/"
 
-#[http]
+# [http]
 #	proxy = http://127.0.0.1:3129
