@@ -21,12 +21,12 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 ## Load
 ################################################################################
 
+# Load rbenv
+eval "$(rbenv init -)"
+
 # Load ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
 [ -r ~/.extra ] && source ~/.extra
-
-# Load rbenv
-eval "$(rbenv init -)"
 
 # Dircolors
 if which gdircolors >/dev/null; then
