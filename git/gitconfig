@@ -1,6 +1,6 @@
 [user]
 	name = Stéphane Goetz
-	email = stephane.goetz@swissquote.ch
+        email = stephane.goetz@onigoetz.ch
 [core]
 	excludesfile = ~/.gitignore
 	#attributesfile = ~/.gitattributes
