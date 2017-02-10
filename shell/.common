@@ -6,19 +6,24 @@
 export DOTFILES="$HOME/dotfiles"
 
 # Textmate as default editor
-export EDITOR="/usr/local/bin/mate -w"
+if command -v mate >/dev/null 2>&1; then
+  export EDITOR="/usr/local/bin/mate -w"
+fi
 
-# Homebrew path at the beginning
-export PATH="$(brew --prefix)/bin:$PATH"
+# Homebrew options
+if command -v brew >/dev/null 2>&1; then
+  # Homebrew path at the beginning
+  export PATH="$(brew --prefix)/bin:$PATH"
 
-# Homebrew Cask
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+  # Homebrew Cask
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+fi
 
 # Java
-export JAVA6_HOME=$(/usr/libexec/java_home -v 1.6)
-export JAVA7_HOME=$(/usr/libexec/java_home -v 1.7)
-export JAVA8_HOME=$(/usr/libexec/java_home -v 1.8)
-export JAVA_HOME=$JAVA8_HOME
+#export JAVA6_HOME=$(/usr/libexec/java_home -v 1.6)
+#export JAVA7_HOME=$(/usr/libexec/java_home -v 1.7)
+#export JAVA8_HOME=$(/usr/libexec/java_home -v 1.8)
+#export JAVA_HOME=$JAVA8_HOME
 
 
 ## Load
@@ -26,21 +31,21 @@ export JAVA_HOME=$JAVA8_HOME
 
 # Load rbenv
 if command -v rbenv >/dev/null 2>&1; then
-        export PATH="$HOME/.rbenv/bin:$PATH"
-        eval "$(rbenv init -)";
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)";
 fi
 
 # Load jenv
 if command -v jenv >/dev/null 2>&1; then
-        export PATH="$HOME/.jenv/bin:$PATH"
-        eval "$(jenv init -)";
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)";
 fi
 
 # Load phpenv
-#if [ -d $HOME/.phpenv/bin ]; then
-#	export PATH="$HOME/.phpenv/bin:$PATH"
-#	eval "$(phpenv init -)";
-#fi
+if [ -d $HOME/.phpenv/bin ]; then
+  export PATH="$HOME/.phpenv/bin:$PATH"
+  eval "$(phpenv init -)";
+fi
 
 # Load SSH agent
 if [ -z "$SSH_AUTH_SOCK" ] ; then
