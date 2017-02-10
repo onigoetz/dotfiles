@@ -1,6 +1,6 @@
 [user]
-	name = Stéphane Goetz
-        email = stephane.goetz@onigoetz.ch
+	name = Stéphane Goetz
+	email = onigoetz@onigoetz.ch
 [core]
 	excludesfile = ~/.gitignore
 	#attributesfile = ~/.gitattributes
@@ -36,26 +36,8 @@
 	changed = green
 	untracked = cyan
 
-[url "git@github.com:"]
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
-[url "git://github.com/"]
-	insteadOf = "github:"
-[url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
-[url "git://gist.github.com/"]
-	insteadOf = "gist:"
-
-[url "http://"]
+[url "https://"]
 	insteadOf = git://
 
-# Any GitHub repo with my username should be checked out r/w by default
-# http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
-[url "git@github.com:onigoetz/"]
-  insteadOf = "git://github.com/onigoetz/"
-
-# [http]
+#[http]
 #	proxy = http://127.0.0.1:3129
