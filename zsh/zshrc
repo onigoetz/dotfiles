@@ -1,22 +1,10 @@
-
-DOTFILES="$HOME/dotfiles"
-
-# Path to your oh-my-zsh installation.
-export ZSH="$DOTFILES/zsh/oh-my-zsh"
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(bower composer common-aliases colorize docker gem git git-flow jsontools mercurial mvn npm vagrant)
-
-source $ZSH/oh-my-zsh.sh
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='darwin'
+fi
 
 # User configuration
 ################################################################################
@@ -24,3 +12,41 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 [ -r ~/dotfiles/shell/.common ] && source ~/dotfiles/shell/.common
+
+# Base configuration
+################################################################################
+
+DOTFILES="$HOME/dotfiles"
+
+# Path to your oh-my-zsh installation.
+export ZSH="$DOTFILES/zsh/oh-my-zsh"
+
+export ZSH_CUSTOM=$DOTFILES/zsh/oh-my-zsh-custom
+
+# Look in ~/.oh-my-zsh/themes/ | zsh/oh-my-zsh-custom/themes
+ZSH_THEME="powerlevel9k"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+plugins=(composer common-aliases docker docker-compose git git-flow jsontools mercurial mvn npm yarn zsh-autosuggestions)
+
+if [[ $platform == 'linux' ]]; then
+  plugins+=(kate kubectl)
+elif [[ $platform == 'Darwin' ]]; then
+  plugins+=(osx)
+fi
+
+plugins+=(zsh-syntax-highlighting)
+
+source $ZSH/oh-my-zsh.sh
+
+
+# Theme
+################################################################################
+
+POWERLEVEL9K_MODE='awesome-patched'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs root_indicator context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+
+#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=4

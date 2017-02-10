@@ -20,7 +20,7 @@ echo "Installing Quick Look Plugins"
 brew cask install webpquicklook qlimagesize qlprettypatch quicklook-json qlmarkdown qlcolorcode
 
 echo "Installing ZSH"
-brew install zsh coreutils zsh-syntax-highlighting
+brew install zsh coreutils
 sudo /bin/sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
 chsh -s /usr/local/bin/zsh
 
