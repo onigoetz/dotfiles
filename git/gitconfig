@@ -20,6 +20,9 @@
 	whitespace = fix
 [merge]
 	log = true
+[push]
+	default = simple
+
 [color]
 	ui = true
 [color "branch"]
