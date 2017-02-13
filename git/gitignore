@@ -21,6 +21,7 @@ nbproject
 
 # Java projects
 overlays
+.java-version
 
 # PHP Projects
-vendor
+/vendor

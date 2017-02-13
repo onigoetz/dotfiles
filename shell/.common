@@ -2,27 +2,56 @@
 ## Exports
 ################################################################################
 
-# dotfiles
+# Dotfiles directory
 export DOTFILES="$HOME/dotfiles"
 
-# Make mate the default editor
-export EDITOR="/usr/local/bin/mate -w"
+# Textmate as default editor
+if command -v mate >/dev/null 2>&1; then
+  export EDITOR="/usr/local/bin/mate -w"
+fi
 
-# homebrew path (and php for pear scripts) at the beginning
-export PATH="$(brew --prefix)/bin:$(brew --prefix php55)/bin:$PATH"
+# Homebrew options
+if command -v brew >/dev/null 2>&1; then
+  # Homebrew path at the beginning
+  export PATH="$(brew --prefix)/bin:$PATH"
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
+  # Homebrew Cask
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+fi
 
-# Homebrew Cask
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+# Java
+#export JAVA6_HOME=$(/usr/libexec/java_home -v 1.6)
+#export JAVA7_HOME=$(/usr/libexec/java_home -v 1.7)
+#export JAVA8_HOME=$(/usr/libexec/java_home -v 1.8)
+#export JAVA_HOME=$JAVA8_HOME
 
 
 ## Load
 ################################################################################
 
 # Load rbenv
-eval "$(rbenv init -)"
+if command -v rbenv >/dev/null 2>&1; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)";
+fi
+
+# Load jenv
+if command -v jenv >/dev/null 2>&1; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)";
+fi
+
+# Load phpenv
+if [ -d $HOME/.phpenv/bin ]; then
+  export PATH="$HOME/.phpenv/bin:$PATH"
+  eval "$(phpenv init -)";
+fi
+
+# Load SSH agent
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
 
 # Load ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
@@ -38,23 +67,6 @@ fi
 
 ## Aliases
 ################################################################################
-
-# start_stop
-alias nginx_start="sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
-alias nginx_stop="sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist"
-
-alias php_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
-alias php_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
-
-alias mysql_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
-alias mysql_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mariadb.plist"
-
-alias postgres_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias postgres_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-
-# programs
-alias php-cs-fix="~/Sites/Library/PHP-CS-Fixer/php-cs-fixer"
-
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
@@ -76,6 +88,7 @@ alias flush="dscacheutil -flushcache"
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
 
 ## Functions
 ################################################################################
