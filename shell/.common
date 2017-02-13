@@ -26,8 +26,12 @@ fi
 #export JAVA_HOME=$JAVA8_HOME
 
 
-## Load
+## PATHs
 ################################################################################
+
+if [ -d $HOME/.composer ]; then
+  export PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
 
 # Load rbenv
 if command -v rbenv >/dev/null 2>&1; then
@@ -47,11 +51,20 @@ if [ -d $HOME/.phpenv/bin ]; then
   eval "$(phpenv init -)";
 fi
 
+# Load nvm
+if [ -d $HOME/.nvm ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+fi
+
 # Load SSH agent
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
   ssh-add
 fi
+
+## Load
+################################################################################
 
 # Load ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
