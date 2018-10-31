@@ -1,14 +1,28 @@
-# Paul's dotfiles.
+# Stéphane's dotfiles.
 
-[mathias's readme](https://github.com/mathiasbynens/dotfiles/) is awesome. go read it.
+I use this to share my configuration between my machines. You're free to take or inspire yourself from the parts you want.
 
-This repo is mostly for me but you're welcome to make suggestions. Mathias's is the project to fork.  I'm mostly catching up to him, @cowboy, and @gf3.
+## Installation
 
-## install the neccessary apps
+```bash
+cd $HOME
+git clone --recurse-submodules https://github.com/onigoetz/dotfiles.git
+cd dotfiles/install
 
-My basic setup is captured in `install-deps.sh` which adds homebrew, z, nave, etc.
+# Install Dotfiles
+./dotfiles.sh
 
-## private config
+# Sane osx default
+./.osx
+
+# Install softwares
+# I don't running the file directly, check the files you need from it
+./install-osx.sh
+```
+
+To update later on, just run the sync again.
+
+## Private config
 
 Toss it into a file called `.extra` which you do not commit to this repo and just keep in your `~/`
 
@@ -26,62 +40,16 @@ PATH=$PATH:~/code/git-friendly
 export PATH
 ```
 
-## Syntax highlighting
+## Installation - Fonts and themes
 
-…is really important. even for these files.
+- https://github.com/tonsky/FiraCode
 
-Install [Dotfiles Syntax Highlighting](https://github.com/mattbanks/dotfiles-syntax-highlighting-st2) via [Sublime Text 2 Package Control](http://wbond.net/sublime_packages/package_control)
+### Visual Studio Code
 
-
-### Sensible OS X defaults
-
-When setting up a new Mac, you may want to set some sensible OS X defaults:
-
-```bash
-./.osx
+```json
+{
+    "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh"
+}
 ```
-
-## Similar projects
-
-I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/master/.jshintrc) and [`.editorconfig`](http://editorconfig.org/) defined for all your projects.
-
-
-
-
-
-## overview of files
-
-####  Automatic config
-* `.ackrc` - for ack (better than grep)
-* `.vimrc`, `.vim` - vim config, obv.
-
-#### shell environement
-* `.aliases`
-* `.bash_profile`
-* `.bash_prompt`
-* `.bashrc`
-* `.exports`
-* `.functions`
-* `.extra` - not included, explained above
-
-#### manual run
-* `install-deps.sh` - random apps i need installed
-* `.osx` - run on a fresh osx machine
-* `.brew` - homebrew intialization
-
-#### git, brah
-* `.git`
-* `.gitattributes`
-* `.gitconfig`
-* `.gitignore`
-
-* `.inputrc` - config for bash readline
-
-
-## Installation
-
-```bash
-git clone https://github.com/paulirish/dotfiles.git && cd dotfiles && ./sync.sh
-```
-
-To update later on, just run the sync again.
