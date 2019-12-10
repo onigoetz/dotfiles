@@ -5,7 +5,7 @@
 	excludesfile = ~/.gitignore
 	#attributesfile = ~/.gitattributes
 	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-	editor = mate -w
+	editor = code --wait
 	autocrlf = false
 [alias]
 	c = commit -am
@@ -20,6 +20,13 @@
 	whitespace = fix
 [merge]
 	log = true
+	tool = vscode
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 [push]
 	default = simple
 
