@@ -1,10 +1,8 @@
 
-# TODO check XCode installation
-
-# TODO - command line tools for OS X : https://developer.apple.com/downloads/index.action
-
 echo "Installing Homebrew..."
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if ! [ -x "$(command -v brew)" ]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
 
 echo "Installing Common softwares ..."
 brew install curl dos2unix graphviz wget git
@@ -23,28 +21,13 @@ brew install zsh coreutils
 sudo /bin/sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
 chsh -s /usr/local/bin/zsh
 
-## TODO :: install Fira Code
-## TODO :: install Hyperblue.app theme and set as default
-
-## @ Home
-######################################################################
+echo "Installing Fira Code Font"
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
 
 echo "Installing home apps"
-brew cask install a-better-finder-rename cleanmymac dropbox skype teamviewer tower vlc brave-browser github gitkraken
+brew cask install cleanmymac dropbox skype vlc brave-browser plex github zoomus slack jetbrains-toolbox spotify spotify-now-playing google-chrome
 
-# TODO  Plex media player
+echo "=> You can now install your terminal theme"
 
-## @ Work
-######################################################################
-
-echo "Installing some more apps"
-brew cask install apache-directory-studio
-
-echo "Installing Java versions"
-brew install terminal-notifier
-brew install jenv
-eval "$(jenv init -)"
-jenv add `/usr/libexec/java_home -v 1.7`
-jenv add `/usr/libexec/java_home -v 1.8`
-jenv enable-plugin maven
-jenv rehash
+## TODO :: install Hyperblue.app theme and set as default
