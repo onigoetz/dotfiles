@@ -25,6 +25,7 @@ mirrorfiles() {
 	link "bash/bash_profile" ".bash_profile"
 
 	link "zsh/zshrc" ".zshrc"
+	link "zsh/p10k.zsh" ".p10k.zsh"
 
 	link "git/gitattributes" ".gitattributes"
 	link "git/gitconfig" ".gitconfig"

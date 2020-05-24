@@ -85,10 +85,10 @@ fi
 ################################################################################
 
 # Recursively delete `.DS_Store` files
-alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
+alias osx-cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Quick way to rebuild the Launch Services database and get rid of duplicates in the Open With submenu.
-alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+alias osx-fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
