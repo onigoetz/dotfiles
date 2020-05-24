@@ -9,4 +9,4 @@
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule "zsh/oh-my-zsh-custom/themes/powerlevel10k"]
 	path = zsh/oh-my-zsh-custom/themes/powerlevel10k
-	url = https://github.com/bhilburn/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
