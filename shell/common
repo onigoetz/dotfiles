@@ -40,7 +40,7 @@ if command -v rbenv >/dev/null 2>&1; then
 fi
 
 # Load jenv
-if command -v jenv >/dev/null 2>&1; then
+if [ -d $HOME/.jenv ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)";
 fi
@@ -49,6 +49,12 @@ fi
 if [ -d $HOME/.phpenv/bin ]; then
   export PATH="$HOME/.phpenv/bin:$PATH"
   eval "$(phpenv init -)";
+fi
+
+# Load asdf
+if [ -d $HOME/.asdf/bin ]; then
+  . $HOME/.asdf/asdf.sh
+  . $HOME/.asdf/completions/asdf.bash
 fi
 
 # Load nvm
@@ -105,7 +111,7 @@ alias flush="dscacheutil -flushcache"
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
-alias k8s-context='kubectl config set-context $(kubectl config current-context) --namespace '
+alias k8s-ns='kubectl config set-context $(kubectl config current-context) --namespace '
 
 ## Functions
 ################################################################################
