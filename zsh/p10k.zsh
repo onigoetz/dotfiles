@@ -72,7 +72,8 @@
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SEGMENT_SEPARATOR=        # no end-of-line symbol
 
   typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$' ❯ '
-  typeset -g POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=$' ❯'
+  typeset -g POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=$' ❯ '
+  typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$' ❮ '
 
   # When set to true, icons appear before content on both sides of the prompt. When set
   # to false, icons go after content. If empty or not set, icons go before content in the left
