@@ -11,9 +11,9 @@ if command -v mate >/dev/null 2>&1; then
 fi
 
 # Homebrew options
-if command -v brew >/dev/null 2>&1; then
+if [ -f /opt/homebrew/bin/brew ]; then
   # Homebrew path at the beginning
-  export PATH="$(brew --prefix)/bin:$PATH"
+  eval $(/opt/homebrew/bin/brew shellenv)
 
   # Homebrew Cask
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
